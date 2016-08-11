@@ -93,7 +93,6 @@ var lambda = new AWS.Lambda();
 
 var params = {
   FunctionName: 'DynamoDB-LambdaJuan',
-  Payload: PAYLOAD_AS_A_STRING
 };
 
 var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
