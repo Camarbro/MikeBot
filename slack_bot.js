@@ -81,6 +81,38 @@ var bot = controller.spawn({
 }).startRTM();
 
 
+var AWS = require("aws-sdk");
+
+AWS.config.update({
+    region: "us-east-1",
+    accessKeyId: 'AKIAJLW2II5CBEQSD57A',
+    secretAccessKey: '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'
+});
+
+var lambda = new AWS.Lambda();
+
+var params = {
+  FunctionName: 'DynamoDB-LambdaJuan',
+  Payload: PAYLOAD_AS_A_STRING
+};
+
+var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+var tableName = "TablaJuan";
+
+
+
+controller.hears(['add user'], 'direct_message,direct_mention,mention', function(bot, message){
+
+  lambda.invoke(params,function(err,data){
+    if(err) console.log(err, err.stack);
+    else console.log(data);
+  });
+
+  bot.reply(message, 'Done brah!');
+
+});
+
+
 controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', function(bot, message) {
 
     bot.api.reactions.add({
