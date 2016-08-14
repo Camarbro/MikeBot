@@ -63,6 +63,7 @@ This bot demonstrates many of the core features of Botkit:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+process.env.token = "";
 
 if (!process.env.token) {
     console.log('Error: Specify token in environment');
@@ -85,14 +86,15 @@ var AWS = require("aws-sdk");
 
 AWS.config.update({
     region: "us-east-1",
-    accessKeyId: 'AKIAJLW2II5CBEQSD57A',
-    secretAccessKey: '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'
+    accessKeyId: '',
+    secretAccessKey: ''
 });
 
 var lambda = new AWS.Lambda();
 
 var params = {
   FunctionName: 'DynamoDB-LambdaJuan',
+  //Payload: PAYLOAD_AS_A_STRING
 };
 
 var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
@@ -107,7 +109,7 @@ controller.hears(['add user'], 'direct_message,direct_mention,mention', function
     else console.log(data);
   });
 
-  bot.reply(message, 'Done brah!');
+  bot.reply(message, '')
 
 });
 
